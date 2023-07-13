@@ -1,0 +1,37 @@
+---
+- name: Start and stop Nginx first time
+  shell:
+    cmd: |
+      /etc/init.d/nginx start
+      /etc/init.d/nginx stop
+
+- name: Recursively change ownership of /var/lib/nginx
+  file:
+    path: /var/lib/nginx
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Recursively change ownership for etc/nginx
+  file:
+    path: /etc/nginx
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Change init.d Permissions
+  file:
+    path: /etc/init.d
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Change init.d NGINX Permissions
+  file:
+    path: /etc/init.d/nginx
+    force: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"

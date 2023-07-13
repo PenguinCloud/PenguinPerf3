@@ -1,0 +1,11 @@
+server {
+    listen 5201;
+    proxy_pass perf;
+    proxy_connect_timeout 5s;
+}
+
+server {
+    listen 5201 udp;
+    proxy_pass perf;
+    proxy_connect_timeout 5s;
+}

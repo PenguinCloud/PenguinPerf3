@@ -1,4 +1,9 @@
 ---
+- name: Add Nginx Repository
+  ansible.builtin.apt_repository:
+    repo: ppa:nginx/stable
+    update_cache: false
+
 - name: Install missing apt packages
   apt:
     pkg:
@@ -11,6 +16,7 @@
       - pip
       - python3-django
       - python3-venv
+      - nginx
       
 - name: Install Django
   pip:

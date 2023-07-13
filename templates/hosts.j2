@@ -1,0 +1,14 @@
+upstream perf {
+    hash $remote_addr consistent;
+    server 127.0.0.1:5202; # max_conns=1 fail_timeout=30s;
+    server 127.0.0.1:5203; # max_conns=1 fail_timeout=30s;
+    server 127.0.0.1:5204; # max_conns=1 fail_timeout=30s;
+    server 127.0.0.1:5205; # max_conns=1 fail_timeout=30s;
+}
+
+upstream web {
+    server 127.0.0.1:8081; # max_conns=3 fail_timeout=30s;
+    server 127.0.0.1:8082; # max_conns=3 fail_timeout=30s;
+    server 127.0.0.1:8083; # max_conns=3 fail_timeout=30s;
+    server 127.0.0.1:8084; # max_conns=3 fail_timeout=30s;
+}
